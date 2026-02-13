@@ -1,0 +1,20 @@
+# === Python virtual environment ===
+.venv/
+venv/
+env/
+
+# === Python cache ===
+__pycache__/
+*.py[cod]
+*$py.class
+
+# === FastAPI / Uvicorn ===
+*.log
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === IDE ===
+.idea/
+.vscode/
