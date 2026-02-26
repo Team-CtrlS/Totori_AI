@@ -2,7 +2,7 @@ from fastapi import APIRouter, UploadFile, File, Query, HTTPException
 from tempfile import NamedTemporaryFile
 import os
 
-from stt.whisper_loader import transcribe_with_timestamps
+from app.services.whisper_loader import transcribe_with_timestamps
 
 router = APIRouter(
     prefix="/api/stt",
