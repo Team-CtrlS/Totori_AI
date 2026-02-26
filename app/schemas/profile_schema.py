@@ -12,7 +12,7 @@ class ProfileRequest(BaseModel):
     )
     recent_wcpm: Optional[float] = Field(
         None, 
-        description="이전 학습 세션에서 측정한 아동의 WCPM. 처음 시작하면 없을 수 있음"
+        description="이전 학습 세션에서 측정한 아동의 WCPM"
     )
     weak_phonemes: Optional[List[str]] = Field(
         None, 
