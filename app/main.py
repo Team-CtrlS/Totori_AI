@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-from app.api import refiner_router, stt_router
+from app.api import refiner_router, stt_router, constraint_router
 
 app = FastAPI()
 
 app.include_router(stt_router.router)
 app.include_router(refiner_router.router)
+app.include_router(constraint_router.router)
 
 @app.get("/")
 def main():
