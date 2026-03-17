@@ -42,31 +42,26 @@ def build_story_prompt(constraints: ConstraintResponse) -> dict:
 
 [출력 형식(JSON)]
 {{
-    "title": "동화 제목",
-    "scenes": [
-        {{
-            "scene_number": 1,
-            "image_prompt": "이 scene의 삽화를 위한 영어 프롬프트",
-            "pages": [
-                {{
-                    "pageOrder": 1,
-                    "image_prompt": "A cute dog wearing a spacesuit looking at the stars, 3d animation style",
-                    "sentences": [
-                        "강아지 토토가 우주선을 탔어요.",
-                        "하늘 높이 날아갔어요.",
-                        "별들이 반짝반짝 빛났어요."
-                    ]
-                }},
-                {{
-                    "pageOrder": 2,
-                    "image_prompt": "...",
-                    "sentences": [ ... ]
-                }}
-            ]
-        }},
-        ...
-    ]
+  "title": "동화 제목",
+  "pages": [
+    {{
+        "pageOrder": 1,
+        "imagePrompt": "A cute puppy looking at a sparkling star in the night sky, children's book illustration, warm and soft style",
+        "sentences": ["토토가 반짝이는 별을 봐요."]
+    }},
+    {{
+        "pageOrder": 2,
+        "imagePrompt": "A cute puppy reaching toward a bright star, children's book illustration, dreamy and warm tone",
+        "sentences": ["토토는 별을 잡고 싶어요."]
+    }}, ...
+  ], ...
 }}
+
+[중요]
+- pages 배열 길이는 반드시 {constraints.total_pages}개여야 해.
+- 각 page의 sentences 배열에는 반드시 문장 1개만 넣어.
+- 설명, 해설, 마크다운 없이 JSON만 출력해.
+
 """
     
     return {
