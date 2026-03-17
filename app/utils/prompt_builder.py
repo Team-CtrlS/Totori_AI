@@ -49,16 +49,18 @@ def build_story_prompt(constraints: ConstraintResponse) -> dict:
             "image_prompt": "이 scene의 삽화를 위한 영어 프롬프트",
             "pages": [
                 {{
-                    "page_number": 1,
-                    "text": "페이지에 들어갈 문장 1개"
+                    "pageOrder": 1,
+                    "image_prompt": "A cute dog wearing a spacesuit looking at the stars, 3d animation style",
+                    "sentences": [
+                        "강아지 토토가 우주선을 탔어요.",
+                        "하늘 높이 날아갔어요.",
+                        "별들이 반짝반짝 빛났어요."
+                    ]
                 }},
                 {{
-                    "page_number": 2,
-                    "text": "페이지에 들어갈 문장 1개"
-                }},
-                {{
-                    "page_number": 3,
-                    "text": "페이지에 들어갈 문장 1개"
+                    "pageOrder": 2,
+                    "image_prompt": "...",
+                    "sentences": [ ... ]
                 }}
             ]
         }},
