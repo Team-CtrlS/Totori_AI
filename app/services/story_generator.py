@@ -43,4 +43,4 @@ class LLMStoryGeneratorService:
         
         except Exception as e:
             print(f"OpenAI API 통신 중 에러 발생: {e}")
-            raise RuntimeError(f"동화 생성 줄 서버 통신 오류가 발생했습니다: {str(e)}")
+            raise RuntimeError(f"동화 생성 중 서버 통신 오류가 발생했습니다: {str(e)}")
