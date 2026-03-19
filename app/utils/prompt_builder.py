@@ -45,13 +45,13 @@ def build_story_prompt(constraints: ConstraintResponse) -> dict:
   "title": "동화 제목",
   "pages": [
     {{
-        "pageOrder": 1,
-        "imagePrompt": "A cute puppy looking at a sparkling star in the night sky, children's book illustration, warm and soft style",
+        "page_order": 1,
+        "image_prompt": "A cute puppy looking at a sparkling star in the night sky, children's book illustration, warm and soft style",
         "sentences": ["토토가 반짝이는 별을 봐요."]
     }},
     {{
-        "pageOrder": 2,
-        "imagePrompt": "A cute puppy reaching toward a bright star, children's book illustration, dreamy and warm tone",
+        "page_order": 2,
+        "image_prompt": "A cute puppy reaching toward a bright star, children's book illustration, dreamy and warm tone",
         "sentences": ["토토는 별을 잡고 싶어요."]
     }}, ...
   ], ...
