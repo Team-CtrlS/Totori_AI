@@ -10,7 +10,7 @@ router = APIRouter(
 def get_orchestrator():
     return StoryOrchestratorService()
 
-@router.post("/story_generate", response_model=StoryResponse)
+@router.post("/generate", response_model=StoryResponse)
 async def generate_story(
     request: GenerateStoryRequest,
     orchestrator: StoryOrchestratorService = Depends(get_orchestrator)
