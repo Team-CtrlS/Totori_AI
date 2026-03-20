@@ -45,22 +45,39 @@ def build_story_prompt(constraints: ConstraintResponse) -> dict:
   "title": "동화 제목",
   "pages": [
     {{
-        "page_order": 1,
-        "image_prompt": "A cute puppy looking at a sparkling star in the night sky, children's book illustration, warm and soft style",
-        "sentences": ["토토가 반짝이는 별을 봐요."]
+      "page_order": 1,
+      "image_prompt": "이 scene의 삽화를 위한 영어 프롬프트",
+      "sentences": [
+        "페이지에 들어갈 문장 1개",
+        "페이지에 들어갈 문장 1개",
+        "페이지에 들어갈 문장 1개"
+      ]
     }},
     {{
-        "page_order": 2,
-        "image_prompt": "A cute puppy reaching toward a bright star, children's book illustration, dreamy and warm tone",
-        "sentences": ["토토는 별을 잡고 싶어요."]
-    }}, ...
-  ], ...
+      "page_order": 2,
+      "image_prompt": "다음 scene의 삽화를 위한 영어 프롬프트",
+      "sentences": [
+          "페이지에 들어갈 문장 1개",
+          "페이지에 들어갈 문장 1개",
+          "페이지에 들어갈 문장 1개"
+      ]
+    }},
+    ...
+  ]
 }}
 
 [중요]
-- pages 배열 길이는 반드시 {constraints.total_pages}개여야 해.
-- 각 page의 sentences 배열에는 반드시 문장 1개만 넣어.
-- 설명, 해설, 마크다운 없이 JSON만 출력해.
+- pages 배열의 각 원소는 하나의 scene이야.
+- 각 scene에는 반드시 "page_order", "image_prompt", "sentences" 필드가 있어야 해.
+- page_order는 scene의 순서를 의미하며 1부터 시작해 순서대로 증가해야 해.
+- 각 scene의 image_prompt는 반드시 영어로 작성해.
+- 각 scene의 sentences 배열에는 해당 scene에 포함된 문장들을 문자열로 넣어.
+- sentences 배열의 각 원소는 반드시 문장 문자열 1개여야 해.
+- 각 문자열에는 반드시 문장 1개만 넣어.
+- 각 문장형 서술은 반드시 '-요'로 끝나야 해. 단, 대사는 예외야.
+- 모든 scene의 sentences 안에 들어 있는 문장의 총합은 반드시 {constraints.total_pages}개여야 해.
+- 한 scene에는 3~4개의 문장을 넣어.
+- 설명, 해설, 마크다운, 코드블록 없이 JSON만 출력해.
 
 """
     

@@ -8,7 +8,7 @@ class GenerateStoryRequest(BaseModel):
     weak_phonemes:  Optional[List[str]] = Field(None, description="취약 발음 리스트")
 
 class Pages(BaseModel):
-    page_order: int = Field(..., description="페이지 순서")
+    page_order: int = Field(..., description="장면 순서")
     image_prompt: str = Field(..., description="장면 이미지 생성을 위한 영어 프롬프트")
     sentences: List[str] = Field(..., description="장면에 속하는 문장 리스트")
 
