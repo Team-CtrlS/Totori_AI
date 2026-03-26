@@ -43,6 +43,7 @@ def build_story_prompt(constraints: ConstraintResponse) -> dict:
 [출력 형식(JSON)]
 {{
   "title": "동화 제목",
+  "cover_image_prompt": "표지 삽화를 위한 영어 프롬프트",
   "pages": [
     {{
       "page_order": 1,

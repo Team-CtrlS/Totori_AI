@@ -14,4 +14,5 @@ class Pages(BaseModel):
 
 class StoryResponse(BaseModel):
     title: str = Field(..., description="동화 제목")
+    cover_image_prompt: str = Field(..., description="표지 이미지 생성을 위한 영어 프롬프트")
     pages: List[Pages] = Field(..., description="동화 페이지 리스트")
