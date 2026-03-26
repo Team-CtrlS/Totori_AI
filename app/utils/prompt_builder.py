@@ -30,8 +30,17 @@ def build_story_prompt(constraints: ConstraintResponse) -> dict:
 4. 문장 길이: 한 페이지당 무조건 1개의 문장만 작성할 것. (한 문장당 절대 {constraints.max_sentence_len}어절을 넘지 말 것)
 {"5. 문장 길이(최소): 한 문장당 최소 " + str(min_len) + "어절 이상으로 써." if min_len else ""}
 6. 전체 분량: 총 {constraints.total_pages}페이지 (즉, 총 {constraints.total_pages}개의 문장)
-7. 장면(Scene) 구성: 3~4개의 페이지(문장)를 묶어서 하나의 Scene으로 구성할 것. 각 Scene마다 삽화를 그리기 위한 구체적인 영어 프롬프트를 1개씩만 생성할 것.
+7. 장면(Scene) 구성:
+- 반드시 정확히 {scene_count}개의 scene만 생성할 것.
+- 각 scene에는 반드시 {sentences_per_scene}개의 문장만 넣을 것.
+- 모든 scene의 sentences 원소 개수 총합은 반드시 {constraints.total_pages}개여야 할 것.
+- "pages" 배열은 실제 페이지 배열이 아니라 scene 배열이다.
+- 실제 페이지 수는 모든 scene의 sentences 안에 있는 문장 수 총합으로 계산한다.
 8. 취약 발음 연습: '{phonemes_str}' 발음이 포함된 단어를 이야기가 어색하지 않은 선에서 자주 등장시킬 것.
+9. 캐릭터 외형 일관성: 이야기 전체의 주인공은 동일한 인물이어야 하며, 모든 scene의 image_prompt에는 주인공의 핵심 외형 정보를 공통적으로 유지해서 넣을 것.
+   - 예: 나이대, 성별, 머리색/머리스타일, 옷차림, 대표 소지품, 전체 화풍
+   - scene이 바뀌어도 주인공의 외형, 의상은 바뀌면 안 돼.
+   - 바뀌는 것은 배경, 행동, 표정, 구도만 허용돼.
 
 [대사 사용 규칙]
 - 이야기 전체에서 1~3개의 페이지만 대사를 포함해.
@@ -77,8 +86,15 @@ def build_story_prompt(constraints: ConstraintResponse) -> dict:
 - 각 문자열에는 반드시 문장 1개만 넣어.
 - 각 문장형 서술은 반드시 '-요'로 끝나야 해. 단, 대사는 예외야.
 - 모든 scene의 sentences 안에 들어 있는 문장의 총합은 반드시 {constraints.total_pages}개여야 해.
-- 한 scene에는 3~4개의 문장을 넣어.
 - 설명, 해설, 마크다운, 코드블록 없이 JSON만 출력해.
+- 모든 scene의 image_prompt에는 반드시 동일한 주인공의 외형 정보가 반복되어야 해.
+- 모든 scene의 image_prompt에는 다음 요소를 자연스럽게 포함해:
+  1) character age
+  2) gender presentation
+  3) hair color and hairstyle
+  4) outfit
+  5) signature item or accessory
+  6) illustration style
 
 """
     
