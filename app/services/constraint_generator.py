@@ -26,6 +26,8 @@ class ConstraintGeneratorService:
             vocab_level=base_consts["vocab_level"],
             total_pages=base_consts["total_pages"],
             theme_keywords=request.interests,
-            focus_phonemes=final_phonemes,
+            focus_phonemes=final_phonemes or [],
+            scene_count=base_consts["scene_count"],
+            sentences_per_scene=base_consts["sentences_per_scene"],
             adjusted_target_wcpm=final_wcpm
         )

@@ -27,4 +27,6 @@ class ConstraintResponse(BaseModel):
     total_pages: int = Field(..., description="총 동화 페이지 수")
     theme_keywords: List[str] = Field(..., description="동화 관심사")
     focus_phonemes: List[str] = Field(..., description="동화에 반복 노출할 취약 음소")
+    scene_count: int = Field(..., description="동화의 총 scene 수")
+    sentences_per_scene: int = Field(..., description="한 장면에 들어가는 문장 수")
     adjusted_target_wcpm: float = Field(..., description="아동의 최근 성적을 반영해 조정한 목표 WCPM")

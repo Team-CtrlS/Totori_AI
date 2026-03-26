@@ -13,6 +13,8 @@ def build_story_prompt(constraints: ConstraintResponse) -> dict:
     themes_str = ", ".join(constraints.theme_keywords) if constraints.theme_keywords else "자유 주제"
     phonemes_str = ", ".join(constraints.focus_phonemes) if constraints.focus_phonemes else "없음"
     min_len = getattr(constraints, "min_sentence_len", None)
+    scene_count = constraints.scene_count
+    sentences_per_scene = constraints.sentences_per_scene
 
     # 제약값 넣어서 지시
     user_prompt = f"""
