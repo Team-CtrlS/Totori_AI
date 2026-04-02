@@ -4,6 +4,8 @@ LEVEL_CONSTRAINTS = {
         "target_wcpm": 15,
         "max_sentence_len": 4,
         "vocab_level": "최하",
+        "scene_count": 6,
+        "sentences_per_scene": 3,
         "total_pages": 18
     }, 
     "L2": {
@@ -11,6 +13,8 @@ LEVEL_CONSTRAINTS = {
         "target_wcpm": 30,
         "max_sentence_len": 5,
         "vocab_level": "하",
+        "scene_count": 6,
+        "sentences_per_scene": 3,
         "total_pages": 18
     }, 
     "L3": {
@@ -18,6 +22,8 @@ LEVEL_CONSTRAINTS = {
         "target_wcpm": 50,
         "max_sentence_len": 7,
         "vocab_level": "중하",
+        "scene_count": 7,
+        "sentences_per_scene": 3,
         "total_pages": 21
     }, 
     "L4": {
@@ -26,6 +32,8 @@ LEVEL_CONSTRAINTS = {
         "min_sentence_len": 5,
         "max_sentence_len": 13,
         "vocab_level": "중",
+        "scene_count": 7,
+        "sentences_per_scene": 3,
         "total_pages": 21
     }, 
     "L5": {
@@ -34,6 +42,8 @@ LEVEL_CONSTRAINTS = {
         "min_sentence_len": 7,
         "max_sentence_len": 15,
         "vocab_level": "중상",
+        "scene_count": 8,
+        "sentences_per_scene": 4,
         "total_pages": 24
     }, 
     "L6": {
@@ -42,6 +52,8 @@ LEVEL_CONSTRAINTS = {
         "min_sentence_len": 11,
         "max_sentence_len": 17,
         "vocab_level": "상",
+        "scene_count": 8,
+        "sentences_per_scene": 4,
         "total_pages": 24
     }
 }
