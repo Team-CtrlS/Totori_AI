@@ -19,7 +19,4 @@ class JosaErrorDetail(BaseModel):
     stt_josa: Optional[str] = Field(None, description="아이가 읽은 조사")
 
 class QuizResponse(BaseModel):
-    level: str
-    quiz_type: str
-    error_detail: Union[PhonemeErrorDetail, JosaErrorDetail]
     quiz_items: List[str] = Field(..., description="단어 4개(L1~L3) 또는 문장 4개(L4~L6)")

@@ -5,7 +5,7 @@ from app.services.josa_analyzer import JosaAnalyzerService
 from app.services.quiz_generator import QuizGeneratorService
 
 router = APIRouter(
-    prefix="/api/quiz",
+    prefix="/ai/quiz",
     tags=["Quiz Generator"]
 )
 
@@ -27,31 +27,11 @@ async def generate_quiz(request: QuizRequest):
             reports, words = _phoneme_analyzer.analyze(request.original_text, request.stt_text)
             pattern, target_word, count = _phoneme_analyzer.get_top_error(reports, words)
             quiz_items = await _quiz_generator.generate_quiz_words(target_word, pattern)
-            return QuizResponse(
-                level=request.level,
-                quiz_type="phoneme",
-                error_detail=PhonemeErrorDetail(
-                    error_pattern=pattern,
-                    target_word=target_word,
-                    error_count=count,
-                ),
-                quiz_items=quiz_items,
-            )
         else:
             events = _josa_analyzer.analyze(request.original_text, request.stt_text)
             top_event = _josa_analyzer.get_top_event(events)
             quiz_items = await _quiz_generator.generate_josa_quiz(top_event)
-            return QuizResponse(
-                level=request.level,
-                quiz_type="josa",
-                error_detail=JosaErrorDetail(
-                    kind=top_event.kind,
-                    stem=top_event.stem,
-                    target_josa=top_event.target_josa,
-                    stt_josa=top_event.stt_josa,
-                ),
-                quiz_items=quiz_items,
-            )
+        return QuizResponse(quiz_items=quiz_items)
         
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
