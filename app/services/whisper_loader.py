@@ -3,7 +3,7 @@ import whisper
 from typing import Dict, Any
 
 # 앱 시작 시 1번만 로드
-MODEL_NAME = os.getenv("WHISPER_MODEL", "medium")
+MODEL_NAME = os.getenv("WHISPER_MODEL", "base")
 _model = whisper.load_model(MODEL_NAME)
 
 # 프리셋 정의
