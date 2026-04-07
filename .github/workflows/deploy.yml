@@ -2,7 +2,7 @@ name: CI/CD FastAPI Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [ deploy ]
 
 jobs:
   build-and-deploy:
