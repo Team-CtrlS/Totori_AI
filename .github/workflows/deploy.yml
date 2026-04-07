@@ -34,6 +34,8 @@ jobs:
           docker rm ai-server || true
           
           docker pull ${{ secrets.DOCKER_REPO }}:latest
-          docker run -d -p 8000:8000 --name ai-server ${{ secrets.DOCKER_REPO }}:latest
-          
+          docker run -d -p 8000:8000 --name ai-server \
+            -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
+            ${{ secrets.DOCKER_REPO }}:latest
+                  
           docker image prune -f
