@@ -52,7 +52,7 @@ class QuizGeneratorService:
         user_prompt = (
             f"아이가 방금 틀린 원래 단어: {target_word}\n"
             f"오류 패턴: {error_pattern}\n"
-            "위 규칙에 따라 '{target_word}'를 포함한 단어 4개를 중복 없이 추천해주세요."
+            f"위 규칙에 따라 '{target_word}'를 포함한 단어 4개를 중복 없이 추천해주세요."
         )
         words = await self._call_gpt(system_prompt, user_prompt, "words")
         return self._dedupe(words, target_word)

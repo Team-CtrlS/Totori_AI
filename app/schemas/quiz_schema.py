@@ -3,8 +3,8 @@ from typing import List, Optional, Union
 
 # 음운 퀴즈
 class QuizRequest(BaseModel):
-    original_text: str = Field(..., description="동화 원문 텍스트")
-    stt_text: str = Field(..., description="아이가 낭독한 STT 결과 텍스트")
+    original_text: List[str] = Field(..., description="동화 원문 텍스트")
+    stt_text: List[str] = Field(..., description="아이가 낭독한 STT 결과 텍스트")
     level: str = Field(..., description="아동의 현재 읽기 레벨(L1-L6)")
 
 class PhonemeErrorDetail(BaseModel):
