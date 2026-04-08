@@ -19,5 +19,4 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-ENV MECAB_DIC_PATH=/usr/local/lib/mecab/dic/mecab-ko-dic
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
