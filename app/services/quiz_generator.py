@@ -9,7 +9,7 @@ class QuizGeneratorService:
             raise ValueError("OPENAI API KEY 환경변수가 설정되지 않았습니다. .env 파일을 확인해주세요.")
         
         self.client = AsyncOpenAI(api_key=api_key)
-        self.model = "gpt-4o"
+        self.model = "gpt-4o-mini"
 
     def _dedupe(self, items: list[str], first: str) -> list[str]:
         seen, result = set(), []
