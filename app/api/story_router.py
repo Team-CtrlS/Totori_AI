@@ -3,7 +3,7 @@ from app.schemas.story_schema import GenerateStoryRequest, StoryResponse
 from app.services.story_orchestrator import StoryOrchestratorService
 
 router = APIRouter(
-    prefix="/api/story",
+    prefix="/ai/story",
     tags=["Story Generator"]
 )
 
