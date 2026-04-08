@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh | bash
 ENV MECABRC=/etc/mecabrc
-ENV MECAB_DIC_PATH=/usr/local/lib/mecab/dic/mecab-ko-dic
+ENV MECAB_DIC_PATH=/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ko-dic
 
 WORKDIR /
 COPY requirements.txt .
