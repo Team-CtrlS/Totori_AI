@@ -5,7 +5,7 @@ import os
 from app.services.whisper_loader import transcribe_with_timestamps
 
 router = APIRouter(
-    prefix="/api/stt",
+    prefix="/ai/stt",
     tags=["STT"]
 )
 

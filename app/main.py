@@ -1,12 +1,14 @@
-from fastapi import FastAPI
-from app.api import stt_router, story_router
 from dotenv import load_dotenv
-
 load_dotenv()
+
+from fastapi import FastAPI
+from app.api import stt_router, story_router, quiz_router
+
 app = FastAPI()
 
 app.include_router(stt_router.router)
 app.include_router(story_router.router)
+app.include_router(quiz_router.router)
 
 @app.get("/")
 def main():
