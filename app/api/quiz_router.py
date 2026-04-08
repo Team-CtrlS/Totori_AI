@@ -26,12 +26,13 @@ async def generate_quiz(request: QuizRequest):
         original_text = " ".join(request.original_text)
         stt_text = " ".join(request.stt_text)
 
+        reports, words = _phoneme_analyzer.analyze(original_text, stt_text)
+        events = _josa_analyzer.analyze(original_text, stt_text)
+
         if request.level in PHONEME_LEVELS:
-            reports, words = _phoneme_analyzer.analyze(original_text, stt_text)
             pattern, target_word, count = _phoneme_analyzer.get_top_error(reports, words)
             quiz_items = await _quiz_generator.generate_quiz_words(target_word, pattern)
         else:
-            events = _josa_analyzer.analyze(original_text, stt_text)
             top_event = _josa_analyzer.get_top_event(events)
             quiz_items = await _quiz_generator.generate_josa_quiz(top_event)
         return QuizResponse(quiz_items=quiz_items)
