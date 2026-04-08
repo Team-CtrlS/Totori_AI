@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
     build-essential \
     curl \
+    git \
     mecab \
     libmecab-dev \
     && rm -rf /var/lib/apt/lists/*
