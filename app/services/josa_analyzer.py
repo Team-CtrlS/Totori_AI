@@ -5,7 +5,9 @@ from collections import Counter
 from konlpy.tag import Mecab
 from app.utils.alignment_utils import levenshtein
 
-os.environ["MECABRC"] = "/opt/homebrew/etc/mecabrc"
+mecabrc_path = os.getenv("MECABRC")
+if mecabrc_path:
+    os.environ["MECABRC"] = mecabrc_path
 
 @dataclass
 class StemJosa:
@@ -21,7 +23,8 @@ class JosaEvent:
 
 class JosaAnalyzerService:
     def __init__(self):
-        self.tagger = Mecab(dicpath="/opt/homebrew/opt/mecab-ko-dic/lib/mecab/dic/mecab-ko-dic")
+        dic_path = os.getenv("MECAB_DIC_PATH", "/usr/local/lib/mecab/dic/mecab-ko-dic")
+        self.tagger = Mecab(dicpath=dic_path)
 
     def _extract(self, text: str) -> List[StemJosa]:
         tokens = self.tagger.pos(text)
