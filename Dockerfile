@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     mecab \
     libmecab-dev \
-    mecab-ko-dic \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab.sh | bash
@@ -17,5 +16,5 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-ENV MECAB_DIC_PATH=/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ko-dic
+ENV MECAB_DIC_PATH=/usr/local/lib/mecab/dic/mecab-ko-dic
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
