@@ -1,10 +1,15 @@
 import os
 import whisper
 from typing import Dict, Any
+import torch
 
 # 앱 시작 시 1번만 로드
 MODEL_NAME = os.getenv("WHISPER_MODEL", "base")
-_model = whisper.load_model(MODEL_NAME)
+device = "mps" if torch.backends.mps.is_available() else "cpu"
+_model = whisper.load_model(MODEL_NAME, device=device)
+
+# MPS는 float64를 사용하므로 word_timestamps 비활성화
+_word_timestamps = device != "mps"
 
 # 프리셋 정의
 PRESETS = {
@@ -16,7 +21,7 @@ PRESETS = {
         beam_size=1,        # 보정 최소
         best_of=5,
         condition_on_previous_text=False,   # 이전 segment 결과 다음에도 반영 x
-        word_timestamps=True,   # 시작/끝 시간 함께 반환
+        word_timestamps=_word_timestamps,
     ),
     "balanced": dict(
         language="ko",
@@ -25,7 +30,7 @@ PRESETS = {
         beam_size=5,
         best_of=1,
         condition_on_previous_text=True,
-        word_timestamps=True,
+        word_timestamps=_word_timestamps,
     ),
     # 가장 자연스러운 전사
     "clean": dict(
@@ -35,7 +40,7 @@ PRESETS = {
         beam_size=5,        # 문맥 고려
         best_of=1,
         condition_on_previous_text=True,
-        word_timestamps=True,
+        word_timestamps=_word_timestamps,
     ),
 }
 
