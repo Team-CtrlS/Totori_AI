@@ -5,7 +5,15 @@ import torch
 
 # 앱 시작 시 1번만 로드
 MODEL_NAME = os.getenv("WHISPER_MODEL", "base")
-device = "mps" if torch.backends.mps.is_available() else "cpu"
+
+# CUDA(NVIDIA GPU), MPS(Mac GPU), CPU 순서대로 우선순위 결정
+if torch.cuda.is_available():
+    device = "cuda"
+elif torch.backends.mps.is_available():
+    device = "mps"
+else:
+    device = "cpu"
+
 _model = whisper.load_model(MODEL_NAME, device=device)
 
 # MPS는 float64를 사용하므로 word_timestamps 비활성화
