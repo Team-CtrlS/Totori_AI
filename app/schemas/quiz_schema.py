@@ -3,7 +3,8 @@ from typing import List
 
 # 음운 퀴즈
 class QuizRequest(BaseModel):
-    book_id: str = Field(..., description="동화 ID")
+    child_id: int = Field(..., description="아동 ID")
+    book_id: int = Field(..., description="동화 ID")
     level: str = Field(..., description="아동의 현재 읽기 레벨(L1~L6)")
 
 class QuizResponse(BaseModel):
