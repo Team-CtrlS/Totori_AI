@@ -1,8 +1,8 @@
 import os
 from contextlib import asynccontextmanager
 from tempfile import NamedTemporaryFile
-from fastapi import APIRouter, File, Form, HTTPException, Path, UploadFile
-from app.schemas.reading_schema import AnalyzeResponse, CompleteResponse
+from fastapi import APIRouter, File, Form, HTTPException, Path, UploadFile, Response
+from app.schemas.reading_schema import CompleteResponse
 from app.services.reading_service import get_reading_service
 
 router = APIRouter(
@@ -26,7 +26,7 @@ async def _save_audio_to_tempfile(file: UploadFile):
             pass
 
 # 낭독 음성 분석
-@router.post("/analyze", response_model=AnalyzeResponse)
+@router.post("/analyze", response_model=204)
 async def analyze_reading(
     file: UploadFile = File(..., description="낭독 음성 파일 (wav/m4a/mp3)"),
     original_text: str = Form(..., description="현재 페이지 원문 텍스트"),
@@ -36,7 +36,7 @@ async def analyze_reading(
 ):
     async with _save_audio_to_tempfile(file) as tmp_path:
         try:
-            result = await _service.analyze_and_store(
+            await _service.analyze_and_store(
                 audio_path=tmp_path,
                 original_text=original_text,
                 child_id=child_id,
@@ -47,13 +47,6 @@ async def analyze_reading(
             raise HTTPException(status_code=400, detail=str(e))
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"낭독 분석 중 오류 발생: {str(e)}")
-        
-        return AnalyzeResponse(
-            child_id=child_id,
-            book_id=book_id,
-            error_count=result["error_count"],
-            has_errors=result["has_errors"],
-        )
 
 # 동화 완료 시 누적 오류 및 wcpm 전체 반환 및 redis 삭제
 @router.post("/complete/{book_id}", response_model=CompleteResponse)

@@ -33,7 +33,7 @@ class ReadingService:
         stt_text = result["text"]
 
         if not stt_text.strip():
-            return {"error_count": 0, "has_errors": False}
+            return
             
         errors = self._extract_errors(original_text, stt_text)
         wcpm = self._calc_wcpm(original_text, result, errors)
@@ -41,8 +41,6 @@ class ReadingService:
         del original_text, stt_text
 
         await self._store_to_redis(child_id, book_id, errors, wcpm)
-
-        return {"error_count": len(errors), "has_errors": bool(errors)}
         
     # 오류 추출
     def _extract_errors(self, original_text: str, stt_text: str) -> list[dict]:

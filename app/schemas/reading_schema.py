@@ -13,12 +13,6 @@ class JosaError(BaseModel):
     target_josa: Optional[str] = Field(None, description="원문 조사")
     stt_josa: Optional[str] = Field(None, description="아이가 읽은 조사")
 
-class AnalyzeResponse(BaseModel):
-    child_id: int = Field(..., description="아동 ID")
-    book_id: int = Field(..., description="동화 ID")
-    error_count: int = Field(..., description="페이지에서 감지된 오류 수")
-    has_errors: bool = Field(..., description="오류 발생 여부")
-
 class CompleteResponse(BaseModel):
     child_id: int = Field(..., description="아동 ID")
     book_id: str = Field(..., description="동화 ID")
