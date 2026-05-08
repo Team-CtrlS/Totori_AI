@@ -39,8 +39,7 @@ class ReadingService:
 
         del original_text, stt_text
 
-        if errors:
-            await self._append_to_redis(book_id, errors)
+        await self._store_to_redis(book_id, errors, wcpm)
 
         return {"error_count": len(errors), "has_errors": bool(errors)}
         
@@ -153,11 +152,20 @@ class ReadingService:
     async def delete_errors(self, book_id: str) -> None:
         await get_redis().delete(_key(book_id), _wcpm_key(book_id))
 
-    # 동화 완료 시 모든 오류 패턴 반환하고 redis에서 삭제
-    async def get_all_and_delete(self, story_id: str) -> list[dict]:
-        errors = await self.get_errors(story_id)
-        await self.delete_errors(story_id)
-        return errors
+    # 동화 완료 시 모든 오류 패턴 및 wcpm 반환하고 redis에서 삭제
+    async def get_all_and_delete(self, book_id: str) -> dict:
+        r = get_redis()
+        errors_raw, wcpm_raw = await asyncio.gather(
+            r.lrange(_key(book_id), 0, -1),
+            r.lrange(_wcpm_key(book_id), 0, -1),
+        )
+        await r.delete(_key(book_id), _wcpm_key(book_id))
+
+        errors = [json.loads(e) for e in errors_raw]
+        wcpm_values = [float(v) for v in wcpm_raw]
+        avg_wcpm    = round(sum(wcpm_values) / len(wcpm_values), 1) if wcpm_values else None
+
+        return {"errors": errors, "avg_wcpm": avg_wcpm}
 
     # 퀴즈 생성용 Top 오류 추출
     def get_top_phoneme_error(self, errors: list[dict]) -> tuple[str, str]:
