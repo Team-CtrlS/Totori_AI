@@ -9,7 +9,7 @@ class QuizGeneratorService:
             raise ValueError("OPENAI API KEY 환경변수가 설정되지 않았습니다. .env 파일을 확인해주세요.")
         
         self.client = AsyncOpenAI(api_key=api_key)
-        self.model = "gpt-4o-mini"
+        self.model = "gpt-5-mini"
 
     def _dedupe(self, items: list[str], first: str) -> list[str]:
         seen, result = set(), []
@@ -21,7 +21,7 @@ class QuizGeneratorService:
     
     async def _call_gpt(self, system_prompt: str, user_prompt: str, key: str) -> list[str]:
         response = await self.client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-5-mini",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user",   "content": user_prompt},

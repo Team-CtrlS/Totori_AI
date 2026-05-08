@@ -14,7 +14,7 @@ class LLMStoryGeneratorService:
         self.client = AsyncOpenAI(api_key=api_key)
 
         # 모델 지정
-        self.model = "gpt-4o"
+        self.model = "gpt-5.1"
 
     async def generate_story(self, system_prompt: str, user_prompt: str) -> StoryResponse:
         try:
