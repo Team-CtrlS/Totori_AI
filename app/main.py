@@ -12,7 +12,7 @@ async def lifespan(app: FastAPI):
     yield
     await redis_client.close()
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 app.include_router(stt_router.router)
 app.include_router(story_router.router)
