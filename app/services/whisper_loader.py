@@ -27,7 +27,7 @@ PRESETS = {
         task="transcribe",
         temperature=0.7,    # 높을수록 여러 가능성. (발음의 흔들림이 남음)
         beam_size=1,        # 보정 최소
-        best_of=5,
+        best_of=1,          # 1로 고정
         condition_on_previous_text=False,   # 이전 segment 결과 다음에도 반영 x
         word_timestamps=_word_timestamps,
     ),
