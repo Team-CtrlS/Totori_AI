@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:23.10-py3
+FROM nvcr.io/nvidia/pytorch:24.01-py3
 
 RUN apt-get update && apt-get install -y \
     default-jdk-headless \
