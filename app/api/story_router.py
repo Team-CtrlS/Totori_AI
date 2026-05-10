@@ -66,7 +66,7 @@ async def generate_story_from_audio(
             raise HTTPException(status_code=400, detail=str(e))
         
     stt_text = stt_result.get("text", "").strip()
-    if not stt_result:
+    if not stt_text:
         raise HTTPException(status_code=422, detail="STT 변환 결과가 비어있습니다.")
     
     parsed_weak_phonemes = None
