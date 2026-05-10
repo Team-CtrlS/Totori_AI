@@ -23,7 +23,7 @@ jobs:
         docker build -t ${{ secrets.DOCKER_REPO }}:latest .
         docker push ${{ secrets.DOCKER_REPO }}:latest
 
-    - name: Deploy to EC2
+    - name: Deploy to GCP
       uses: appleboy/ssh-action@v1.2.0
       with:
         host: ${{ secrets.HOST }}
@@ -34,8 +34,9 @@ jobs:
           docker rm ai-server || true
           
           docker pull ${{ secrets.DOCKER_REPO }}:latest
-          docker run -d -p 8000:8000 --name ai-server \
+          
+          docker run -d --gpus all -p 8000:8000 --name ai-server \
             -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
             ${{ secrets.DOCKER_REPO }}:latest
-                  
+                    
           docker image prune -f
