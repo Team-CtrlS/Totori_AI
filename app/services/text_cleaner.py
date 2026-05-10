@@ -18,3 +18,14 @@ def basic_clean(text: str) -> str:
     ]
 
     return " ".join(cleaned_words)
+
+# 퀴즈 정답 비교용 텍스트 정규화
+def normalize_for_quiz(text: str) -> str:
+    if not text:
+        return ""
+    
+    text = re.sub(r"[^가-힣a-zA-Z0-9]", "", text)
+
+    text = re.sub(r"\s+", " ", text)
+
+    return text.strip()
