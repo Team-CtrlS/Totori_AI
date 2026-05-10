@@ -74,7 +74,7 @@ async def generate_story_from_audio(
         try:
             parsed_weak_phonemes = json.loads(weak_phonemes)
         except json.JSONDecodeError:
-            parsed_weak_phonemes = None
+            raise HTTPException(status_code=400, detail="weak_phonemes는 올바른 JSON 형식이어야 합니다.")
     
     story_request = GenerateStoryRequest(
         stt_text=stt_text,
