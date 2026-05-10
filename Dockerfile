@@ -11,7 +11,7 @@ RUN curl -s https://raw.githubusercontent.com/konlpy/konlpy/master/scripts/mecab
 ENV MECABRC=/etc/mecabrc
 ENV MECAB_DIC_PATH=/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ko-dic
 
-WORKDIR /app
+WORKDIR /
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
