@@ -9,3 +9,6 @@ class QuizRequest(BaseModel):
 
 class QuizResponse(BaseModel):
     quiz_items: List[str] = Field(..., description="단어 4개(L1~L3) 또는 문장 4개(L4~L6)")
+
+class AnalyzeQuizResponse(BaseModel):
+    is_correct: bool = Field(..., description="퀴즈 정답 여부")
