@@ -2,6 +2,7 @@ annotated-doc==0.0.4
 annotated-types==0.7.0
 anyio==4.12.1
 certifi==2026.1.4
+cffi==2.0.0
 charset-normalizer==3.4.4
 click==8.3.1
 distro==1.9.0
@@ -37,6 +38,7 @@ numpy==2.4.2
 openai==2.21.0
 openai-whisper==20250625
 packaging==26.0
+pycparser==3.0
 pydantic==2.12.5
 pydantic-extra-types==2.11.0
 pydantic-settings==2.13.1
@@ -45,6 +47,7 @@ Pygments==2.19.2
 python-dotenv==1.2.1
 python-multipart==0.0.22
 PyYAML==6.0.3
+redis==7.4.0
 regex==2026.2.19
 requests==2.32.5
 rich==14.3.3
