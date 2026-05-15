@@ -22,9 +22,9 @@ LEVEL_CONSTRAINTS = {
         "target_wcpm": 50,
         "max_sentence_len": 7,
         "vocab_level": "중하",
-        "scene_count": 7,
+        "scene_count": 6,
         "sentences_per_scene": 3,
-        "total_pages": 21
+        "total_pages": 18
     }, 
     "L4": {
         "age_group": "9~10세",
@@ -32,9 +32,9 @@ LEVEL_CONSTRAINTS = {
         "min_sentence_len": 5,
         "max_sentence_len": 13,
         "vocab_level": "중",
-        "scene_count": 7,
+        "scene_count": 9,
         "sentences_per_scene": 3,
-        "total_pages": 21
+        "total_pages": 27
     }, 
     "L5": {
         "age_group": "11~12세",
@@ -42,9 +42,9 @@ LEVEL_CONSTRAINTS = {
         "min_sentence_len": 7,
         "max_sentence_len": 15,
         "vocab_level": "중상",
-        "scene_count": 8,
-        "sentences_per_scene": 4,
-        "total_pages": 24
+        "scene_count": 9,
+        "sentences_per_scene": 3,
+        "total_pages": 27
     }, 
     "L6": {
         "age_group": "13세",
@@ -52,8 +52,8 @@ LEVEL_CONSTRAINTS = {
         "min_sentence_len": 11,
         "max_sentence_len": 17,
         "vocab_level": "상",
-        "scene_count": 8,
-        "sentences_per_scene": 4,
-        "total_pages": 24
+        "scene_count": 9,
+        "sentences_per_scene": 3,
+        "total_pages": 27
     }
 }
