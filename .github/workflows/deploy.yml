@@ -35,8 +35,14 @@ jobs:
           
           docker pull ${{ secrets.DOCKER_REPO }}:latest
           
-          docker run -d --gpus all -p 8000:8000 --name ai-server \
+          docker run -d \
+            --name ai-server \
+            --restart always \
+            --gpus all \
+            --network host \
             -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
+            -e REDIS_HOST=127.0.0.1 \
+            -e REDIS_PORT=6379 \
             ${{ secrets.DOCKER_REPO }}:latest
                     
           docker image prune -f
