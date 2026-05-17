@@ -41,6 +41,10 @@ jobs:
             --gpus all \
             --network host \
             -e OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
+            -e ELEVENLABS_API_KEY=${{ secrets.ELEVENLABS_API_KEY }}  \
+            -e ELEVENLABS_BASE_URL=${{ secrets.ELEVENLABS_BASE_URL }} \
+            -e ELEVENLABS_VOICE_ID=${{ secrets.ELEVENLABS_VOICE_ID }} \
+            -e ELEVENLABS_MODEL_ID=${{ secrets.ELEVENLABS_MODEL_ID }} \
             -e REDIS_HOST=127.0.0.1 \
             -e REDIS_PORT=6379 \
             ${{ secrets.DOCKER_REPO }}:latest
