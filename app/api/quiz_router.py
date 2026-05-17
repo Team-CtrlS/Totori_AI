@@ -1,4 +1,7 @@
 import os
+import asyncio
+import base64
+import logging
 from contextlib import asynccontextmanager
 from tempfile import NamedTemporaryFile
 
@@ -10,6 +13,9 @@ from app.services.quiz_analyzer import QuizAnalyzerService
 from app.services.whisper_loader import transcribe_with_timestamps
 from app.utils.audio_utils import save_audio_to_tempfile
 from app.services.reading_service import get_reading_service
+from app.clients import elevenlabs_client
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(
     prefix="/ai/quiz",
@@ -39,7 +45,8 @@ async def generate_quiz(request: QuizRequest):
             event = _reading_service.get_top_josa_error(errors)
             quiz_items = await _quiz_generator.generate_josa_quiz(event)
 
-        return QuizResponse(quiz_items=quiz_items)
+        audio_data = await _generate_audio_for_items(quiz_items)
+        return QuizResponse(quiz_items=quiz_items, audio_data=audio_data)
 
     except ValueError as e:
         # 오류 패턴이 없는 경우 (아이가 완벽하게 읽은 구간)
@@ -64,3 +71,20 @@ async def analyze_quiz(
     )
 
     return AnalyzeQuizResponse(is_correct=is_correct)
+
+async def _synthesize_safe(text: str) -> str:
+    try:
+        audio_bytes = await elevenlabs_client.synthesize(text)
+        return base64.b64encode(audio_bytes).decode("utf-8")
+    except Exception as e:
+        logger.error("TTS 실패 - text: %s, error: %s", text, e)
+        return ""
+
+_tts_semaphore = asyncio.Semaphore(2)
+
+async def _synthesize_safe_limited(text: str) -> str:
+    async with _tts_semaphore:
+        return await _synthesize_safe(text)
+
+async def _generate_audio_for_items(items: list[str]) -> list[str]:
+    return list(await asyncio.gather(*[_synthesize_safe_limited(item) for item in items]))
