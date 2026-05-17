@@ -49,7 +49,7 @@ async def analyze_reading(
             raise HTTPException(status_code=500, detail=f"낭독 분석 중 오류 발생: {str(e)}")
 
 # 동화 완료 시 누적 오류 및 wcpm 전체 반환 및 redis 삭제
-@router.post("/complete/{book_id}", response_model=CompleteResponse)
+@router.post("/complete/{child_id}/{book_id}", response_model=CompleteResponse)
 async def complete_reading(
     child_id: int = Path(..., description="아동 ID"),
     book_id: int = Path(..., description="동화 ID"),
@@ -62,7 +62,6 @@ async def complete_reading(
     return CompleteResponse(
         child_id=child_id,
         book_id=book_id,
-        total_errors=len(result["errors"]),
         errors=result["errors"],
         avg_wcpm=result["avg_wcpm"],
     )
