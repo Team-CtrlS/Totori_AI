@@ -51,7 +51,8 @@
 | :---: | :---: | 
 | <img width="120" alt="복지희 GitHub 프로필" src="https://avatars.githubusercontent.com/u/129582481?v=4" /> | <img width="120" alt="정유진 GitHub 프로필" src="https://avatars.githubusercontent.com/u/127232686?v=4" /> |
 | [`@jettieb`](https://github.com/jettieb) | [`@nomellc`](https://github.com/nomellc) |
-| |  |
+| **AI Developer** | **AI Developer** |
+|  | 음운 오류 패턴 분석 로직,<br>동화 낭독 음성 분석,<br>OpenAI API 기반 동화 생성,<br>퀴즈 생성 담당|
 
 ## 📁 프로젝트 구조
 
