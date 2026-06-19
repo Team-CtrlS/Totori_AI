@@ -284,31 +284,31 @@ python -m compileall app
 
 ## 🚀 문제 해결
 
-### 서버 시작 시 Redis 연결에 실패합니다
+#### 서버 시작 시 Redis 연결에 실패합니다
 
 Redis가 실행 중인지, `REDIS_HOST`와 `REDIS_PORT`가 실제 주소와 같은지 확인하세요. 애플리케이션은 시작 단계에서 Redis에 연결합니다.
 
-### OpenAI API 키 오류가 발생합니다
+#### OpenAI API 키 오류가 발생합니다
 
 환경변수 파일의 위치가 저장소 루트가 아니라 `app/.env`인지 확인하세요.
 
-### MeCab 사전을 찾지 못합니다
+#### MeCab 사전을 찾지 못합니다
 
 `MECABRC`와 `MECAB_DIC_PATH`를 현재 운영체제의 실제 설치 경로로 바꾸세요.
 
-### 첫 요청이나 서버 시작이 느립니다
+#### 첫 요청이나 서버 시작이 느립니다
 
 Whisper 모델 다운로드 또는 로딩이 원인일 수 있습니다. `WHISPER_MODEL=base`나 `small`로 낮춰 확인하세요.
 
-### Wav2Vec 분석 결과를 재현할 수 없습니다
+#### Wav2Vec 분석 결과를 재현할 수 없습니다
 
 학습 체크포인트, 전처리 방식, CTC Decoder 설정이 같은지 확인하세요. 체크포인트가 저장소 외부에 있다면 다운로드 링크와 로컬 배치 경로가 README 또는 배포 문서에 명시되어 있어야 합니다.
 
-### TTS 결과가 비어 있습니다
+#### TTS 결과가 비어 있습니다
 
 `ELEVENLABS_API_KEY`, `ELEVENLABS_BASE_URL`, `ELEVENLABS_VOICE_ID`, `ELEVENLABS_MODEL_ID`를 모두 확인하세요.
 
-## 관련 저장소
+## 📁 관련 저장소
 
 - iOS 앱: [`Totori_FE`](https://github.com/Team-CtrlS/Totori_FE)
 - 백엔드: [`Totori_BE`](https://github.com/Team-CtrlS/Totori_BE)
