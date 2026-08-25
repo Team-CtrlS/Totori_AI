@@ -21,3 +21,9 @@ Thumbs.db
 
 # === API KEY ===
 .env
+
+# == test audios ==
+/scripts/data/labels/
+/scripts/data/audios/
+/scripts/test/samples/
+/scripts/test/samples_my/
